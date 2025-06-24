@@ -20,7 +20,7 @@ const TopProducts = ({ handleOrderPopup }) => {
         headers :{
             'Content-type': 'application/json',
         'Accept': 'Application/json',
-        'Authorization':`Bearer ${token()}`
+   
         }
     }).then(res=> res.json())
     .then(result =>  {

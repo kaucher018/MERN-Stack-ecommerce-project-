@@ -132,7 +132,7 @@ useEffect(() => {
               <h2 className="font-semibold mb-2">Categories</h2>
               {categories.map((cat) => (
                 <div key={cat.id} className="flex items-center space-x-2 mb-1">
-                  <input type="checkbox" value={cat.id} id={cat.id} className="accent-cyan-600" 
+                  <input type="checkbox" value={cat._id} id={cat.id} className="accent-cyan-600" 
                   onClick={(e) => handlecategory(e)} />
                   <label htmlFor={cat.id}>{cat.name}</label>
                 </div>
@@ -144,7 +144,7 @@ useEffect(() => {
               <h2 className="font-semibold mb-2">Brands</h2>
               {brands.map((brand) => (
                 <div key={brand.id} className="flex items-center space-x-2 mb-1">
-                  <input type="checkbox" value={brand.id} id={brand.id} className="accent-cyan-600" onClick={(e) => handlebrand(e)} />
+                  <input type="checkbox" value={brand._id} id={brand.id} className="accent-cyan-600" onClick={(e) => handlebrand(e)} />
                   <label htmlFor={brand.id}>{brand.name}</label>
                 </div>
               ))}
