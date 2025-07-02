@@ -29,6 +29,7 @@ import {default as Adminproducts} from './Components/Admin/Products/Products'
 import {default as AdminProductCreate} from './Components/Admin/Products/Create'
 import {default as AdminProductEdit} from './Components/Admin/Products/Edit'
 import Shop from './Components/Shop/Shop'
+import NavTop from './Components/TopProducts/NavTop'
 
 function App() {
   const [orderPopup, setOrderPopup] = React.useState(false);
@@ -63,6 +64,7 @@ function App() {
     <Route path="/" element={ <Footer/>}/>
     <Route path="/Loader" element={ <Loader/>}/>
     <Route path="/Shop" element={ <Shop/>}/>
+    <Route path="/NavTop" element={ <NavTop/>}/>
     <Route path="/" element={ <Popup orderPopup={orderPopup} setOrderPopup={setOrderPopup} />}/>
     
     <Route path="/login" element={<Login/>}/>
