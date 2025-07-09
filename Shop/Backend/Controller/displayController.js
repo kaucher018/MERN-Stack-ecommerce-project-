@@ -57,3 +57,27 @@ export const getProduct = async (req, res) => {
     res.status(500).json({ status: 500, error: err.message });
   }
 };
+
+  // async getProductDetail(req, res) {
+  export const getProductDetail = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const product = await Product.findById(id)
+        .populate('product_images')
+        .populate({
+          path: 'product_sizes',
+          populate: { path: 'size_id', model: 'Size' }
+        });
+
+      if (!product) {
+        return res.status(404).json({
+          status: '404',
+          message: 'Product not found'
+        });
+      }
+
+      res.status(200).json({ status: '200', data: product });
+    } catch (error) {
+      res.status(500).json({ status: '500', message: 'Server Error', error });
+    }
+  };
