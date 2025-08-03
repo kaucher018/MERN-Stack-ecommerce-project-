@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import { useParams } from "react-router-dom";
 import { API_URL } from "../Common/Http";
-
-// import { CartContext } from "../Cart/Cart";
+import { useContext } from "react";
+import { CartContext } from "../Cart/Cart";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +15,7 @@ export default function ProductDetail() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [size, setsize] = useState([]);
   const params = useParams();
-  // const { addtocart } = useContext(CartContext);
+  const { addtocart } = useContext(CartContext);
   const [selectedSize, setSelectedSize] = useState(null);
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ export default function ProductDetail() {
           setProduct(result.data);
           setproductimages(result.data.product_images);
           setsize(result.data.product_sizes);
-       
+          // console.log(size.size.id);
          
         
         } else {
@@ -70,19 +70,17 @@ export default function ProductDetail() {
       if(selectedSize == null){
         toast.error("Please select a size");
       }else{
-        // addtocart(product, selectedSize); 
+        addtocart(product, selectedSize); 
         toast.success(" Sucksexfully Product added to cart");
         // console.log(selectedSize);
         // console.log(size);
     }
   } else {
-    // addtocart(product,null);
+    addtocart(product,null);
   }
 
 
       }
-
-
 
 
    
@@ -167,7 +165,7 @@ export default function ProductDetail() {
           <div>
             <p className="mb-2">Select Size</p>
            <div className="flex gap-3">
-              { size.map((size) => (
+               { size.map((size) => (
                 <button
                 onClick={() => setSelectedSize(size.size_id.name)  }
                   key={size.size_id._id}

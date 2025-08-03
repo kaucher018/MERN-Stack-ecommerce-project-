@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { FaTachometerAlt } from 'react-icons/fa';
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../Cart/Cart";
 
 
 
@@ -25,12 +27,12 @@ const Menu = [
   {
     id: 3,
     name: "Top Rated",
-    link: "/NavTop",
+    link: "/Top",
   },
   {
     id: 4,
     name: "Discount Product",
-    link: "/#",
+    link: "/Discountproduct",
   },
   {
     id: 5,
@@ -57,8 +59,9 @@ const DropdownLinks = [
   },
 ];
 
-const Navbar = ({ handleOrderPopup}) => {
+const Navbar = () => {
   const navigate = useNavigate();
+  const { getquantity } = useContext(CartContext);
 
   const handleLoginPopup = () => {
     
@@ -82,9 +85,9 @@ const Navbar = ({ handleOrderPopup}) => {
         <div className="container flex justify-between items-center">
           <div>
             <a href="#" className="font-bold text-2xl sm:text-3xl flex gap-2 ml-5">
-                         <img src={Logo} alt="Logo" className="w-20" />
-                        <span className="text-white mt-4">StyleLoop</span> 
-                       </a>
+              <img src={Logo} alt="Logo" className="w-20" />
+             <span className="text-white mt-4">StyleLoop</span> 
+            </a>
           </div>
 
           {/* search bar */}
@@ -104,29 +107,24 @@ const Navbar = ({ handleOrderPopup}) => {
   <>
 
 <button
-              className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white  py-1 px-4 rounded-full flex items-center gap-3 group"
-            >
+              className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white  py-1 px-4 rounded-full flex items-center gap-3 group">
               <span className="text-green-600 cursor-pointer group-hover:block hidden transition-all duration-200" >
              <Link to="/dashboard"> {JSON.parse(localStorage.getItem("Admininfo")).name}'s Dashboard   </Link> 
               </span>
-              <FaTachometerAlt className="text-2xl text-green-600 hover:text-primary cursor-pointer" />
-
+              <FaTachometerAlt className="text-2xl text-green-600 hover:text-primary cursor-pointer" onClick={() => navigate("/dashboard")} />
             </button>
-
-
-
-
-
-  
     <button
       className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white py-1 px-4 rounded-full flex items-center gap-3 group"
     >
        Welcome Boss!
       <FaUserCircle className="text-2xl text-gray-600 hover:text-primary cursor-pointer" /> 
     </button>
-    <button onClick={() => logoutuser()}>
-      LogOut
-    </button>
+   <div className="relative cursor-pointer" onClick={() => navigate("/Cart")}>
+      <FaCartShopping className="text-xl text-white drop-shadow-sm" />
+      <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full shadow">
+        {getquantity()}
+      </span>
+    </div>
   </>
 ) :
        
@@ -134,44 +132,37 @@ const Navbar = ({ handleOrderPopup}) => {
         
         <>
          <button
-              className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white  py-1 px-4 rounded-full flex items-center gap-3 group"
+              className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white  py-1 px-4 rounded-full flex items-center gap-3 group hover:scale-105 "
             >
-              <span className="group-hover:block hidden transition-all duration-200">
-                Welcome!  {JSON.parse(localStorage.getItem("userinfo")).name} .
+              <span className="group-hover:block hidden transition-all duration-200 text-green-600 ">
+              {JSON.parse(localStorage.getItem("userinfo")).name}'s Account
               </span>
-              <FaUserCircle className="text-2xl text-gray-600 hover:text-primary cursor-pointer" />
+              <FaUserCircle className="text-2xl text-white hover:text-green-600 hover:text-primary cursor-pointer" onClick={() => navigate("/user/profile")} />
 
             </button>
 
-        <button
-              onClick={() => handleOrderPopup()}
-              className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white  py-1 px-4 rounded-full flex items-center gap-3 group"
-            >
-              <span className="group-hover:block hidden transition-all duration-200">
-                Order
-              </span>
-              <FaCartShopping className="text-xl text-white drop-shadow-sm cursor-pointer" />
-            </button>
-            <button onClick={()=>logoutuser()}
-            className="w-[100px] sm:w-[100px] border-2 border-green-600 hover:scale-105 duration-300 text-white rounded-full " >
+       <div className="relative cursor-pointer hover:scale-120 mr-10" onClick={() => navigate("/Cart")}>
+      <FaCartShopping className="text-2xl text-white hover:text-green-600 drop-shadow-sm" />
+      <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full shadow">
+        {getquantity()}
+      </span>
+    </div>
+            <button onClick={()=>logoutuser()} className="w-[100px] sm:w-[100px] border-2 border-green-600 hover:scale-105 duration-300 text-white rounded-full">
               LogOut
             </button> 
             </>) :
-            
-
             (
             <><button
               onClick={() => handleLoginPopup()}
-              className="w-[100px] sm:w-[100px] border-2 border-green-600 hover:scale-105 duration-300 text-white rounded-full "
+              className="w-[100px] sm:w-[100px] border-2 border-green-600 hover:scale-105 duration-300 text-white rounded-full"
             >   
-             LOGIN
+             Login
             </button>
-OR
             <button
               onClick={() => handleSingUpPopup()}
-              className="w-[100px] sm:w-[100px] border-2 border-green-600 hover:scale-105 duration-300 text-white rounded-full "
+              className="w-[100px] sm:w-[100px] border-2 border-green-600 hover:scale-105 duration-300 text-white rounded-full"
             >
-             SINGUP
+             SingUp
             </button>
             
 </>
