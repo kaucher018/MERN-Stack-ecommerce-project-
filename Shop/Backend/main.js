@@ -7,6 +7,9 @@ import sizeRoutes from './Routes/sizeRoutes.js';
 import tempImageRoutes from './Routes/tempImageRoutes.js';
 import productRoutes from './Routes/productRoutes.js';
 import displayRoutes from './Routes/displayRoute.js';
+import orderRoutes from './Routes/orderRoutes.js';
+import accountRoutes from './Routes/accountRoutes.js';
+
 
 
 
@@ -35,6 +38,8 @@ app.use('/api', sizeRoutes);
 app.use('/api', tempImageRoutes);
 app.use('/api', productRoutes);
 app.use('/api', displayRoutes);
+app.use('/api', orderRoutes);
+app.use('/api', accountRoutes);
 
 
 app.listen(port, () => {

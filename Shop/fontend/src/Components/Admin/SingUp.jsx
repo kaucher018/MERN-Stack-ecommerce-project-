@@ -33,7 +33,7 @@ const SignUp = () => {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-     if(data.status == 250){
+     if(data.status == 201){
         const userinfo = {
             status: data.status,
             message: data.message,
