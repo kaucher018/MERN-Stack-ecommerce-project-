@@ -38,7 +38,7 @@ export default function OdersDetails() {
   };
 
   const fetchOrder = async () => {
-    fetch(`${API_URL}showOders/${params.id}`, {
+    fetch(`${API_URL}Allorders/${params.id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -49,8 +49,9 @@ export default function OdersDetails() {
     .then(result => {
       if (result.status == 200) {
         
-        setorder(result.oder);
-        setitems(result.oder.oder_items);
+        setorder(result.order);
+        console.log(result.order);
+        setitems(result.order.order_items);
         toast.success(result.message);
         setLoading(false);
       } else {
@@ -61,7 +62,7 @@ export default function OdersDetails() {
 
 
 const updateOders = async (data) => {
-  await fetch(`${API_URL}showOders/${params.id}`, {
+  await fetch(`${API_URL}uporders/${params.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -102,7 +103,7 @@ const updateOders = async (data) => {
         <div className="bg-white rounded-xl shadow p-6">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-xl font-semibold text-gray-800">
-              Order: <span className="text-blue-600">#{order.id}</span>
+              Order: <span className="text-blue-600">#{order._id}</span>
               <span className={`ml-3 px-2 py-1 text-sm rounded-full ${statusBadge[order.status]}`}>
                 {order.status}
               </span>
@@ -134,7 +135,7 @@ const updateOders = async (data) => {
           <div className="border rounded-lg overflow-hidden">
             {items.map((item, index) => (
               <div key={index} className="flex items-center gap-4 p-4 border-b last:border-b-0">
-                <img src={item.product.image_url} alt={item.name} className="w-16 h-20 object-cover rounded" />
+                <img src={item.image_url} alt={item.name} className="w-16 h-20 object-cover rounded" />
                 <div className="flex-1">
                   <p className="font-medium text-gray-800">{item.name}</p>
                   <p className="text-sm text-gray-500">Size: {item.size}</p>

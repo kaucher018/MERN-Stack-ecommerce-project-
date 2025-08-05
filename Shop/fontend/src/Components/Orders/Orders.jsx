@@ -30,29 +30,42 @@ export default function OrdersTable() {
 
 
  const fetchOrders = async () => {
-  fetch(`${API_URL}showOders`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${token()}`
-    }
-  }).then(res => res.json())
-  .then(result => {
-    if (result.status == 200) {
-      
-      setOrders(result.oders);
-      
-      toast.success(result.message);
+  try {
+  
+    const response = await fetch(`${API_URL}Allorders`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${token()}`
+      }
+    });
+
+
+    const result = await response.json();
+
+
+    if (response.status === 200 && result.status === '200') {
+      setOrders(result.orders || result.oders); // log both in case it's a typo
+      toast.success(result.message || 'Orders loaded');
       setLoading(false);
     } else {
-      console.log("error");
+      console.error("❌ API responded with an error:", result.message || 'Unknown error');
+      toast.error(result.message || 'Failed to load orders');
     }
-  });
- }
- useEffect(() => {
+
+  } catch (err) {
+    console.error("🚨 Fetch failed:", err);
+    toast.error("Network error. Please try again.");
+  }
+};
+
+useEffect(() => {
   fetchOrders();
 }, []);
+
+
+
 
 
   return (
@@ -88,11 +101,11 @@ export default function OrdersTable() {
             <tbody>
               {orders.map((order) => (
                 <tr
-                onClick={() => navigate(`/order/${order.id}`)}
-                  key={order.id}
+                onClick={() => navigate(`/order/${order._id}`)}
+                  key={order._id}
                   className="border-b hover:bg-gray-50 transition"
                 >
-                  <td className="px-4 py-3 font-medium text-blue-600" onClick={() => navigate(`/order/${order.id}`)} >{order.id}</td>
+                  <td className="px-4 py-3 font-medium text-blue-600" onClick={() => navigate(`/order/${order._id}`)} >{order._id}</td>
                   <td className="px-4 py-3">{order.name}</td>
                   <td className="px-4 py-3">{order.email}</td>
                   <td className="px-4 py-3">{order.grand_total}</td>

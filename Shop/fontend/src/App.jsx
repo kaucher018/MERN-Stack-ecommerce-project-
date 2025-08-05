@@ -30,11 +30,16 @@ import {default as AdminProductCreate} from './Components/Admin/Products/Create'
 import {default as AdminProductEdit} from './Components/Admin/Products/Edit'
 import Shop from './Components/Shop/Shop'
 import NavTop from './Components/TopProducts/NavTop'
+
+import NavDis from './Components/TopProducts/NavDis'
 import ProductDetail from './Components/ProductDetail/ProductDetail'
 import Cartdisplay from './Components/Cart/Cartdisplay'
 import Checkout from './Components/Checkout/Checkout'
 import { AuthRequire } from './Components/Context/AuthRequire'
 import OrderConfirmation from './Components/OrderConfirmation/OrderConfirmation'
+import AboutUs from './Components/About/Aboutus'
+import {default as AdminOrders} from './Components/Orders/Orders'
+import OdersDetails from './Components/Orders/OdersDetails'
 
 function App() {
   const [orderPopup, setOrderPopup] = React.useState(false);
@@ -70,11 +75,14 @@ function App() {
     <Route path="/Loader" element={ <Loader/>}/>
     <Route path="/Shop" element={ <Shop/>}/>
     <Route path="/NavTop" element={ <NavTop/>}/>
+    <Route path="/Discountproduct" element={ <NavDis/>}/>
     <Route path="/" element={ <Popup orderPopup={orderPopup} setOrderPopup={setOrderPopup} />}/>
     <Route path="/ProductDetail/:id" element={ <ProductDetail/>}/>
       <Route path="/Cart" element={ <Cartdisplay/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/signup" element={<SignUp/>}/>
+    <Route path="/AboutUs" element={<AboutUs/>}/>
+ 
     <Route path="/dashboard" element={
       <AdminRequire>
       <Dashbord/>
@@ -145,8 +153,18 @@ function App() {
      <Checkout/>
       </AuthRequire>
  }/>
-    
 
+  <Route path="/Orders" element={
+      <AdminRequire>
+      <AdminOrders/>
+      </AdminRequire>
+  }/>
+    
+<Route path="/order/:id" element={
+      <AdminRequire>
+      <OdersDetails/>
+      </AdminRequire>
+  }/>
 
     </Routes>
   </BrowserRouter>
