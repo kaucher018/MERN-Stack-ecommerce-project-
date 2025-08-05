@@ -13,7 +13,16 @@ export const showProducts = async (req, res) => {
 
 export const bestProducts = async (req, res) => {
   try {
-    const products = await Product.find({ is_featured: 1 }).sort({ createdAt: -1 }).limit(5);
+    const products = await Product.find({ is_featured: 1 }).sort({ createdAt: -1 });
+    res.json({ status: 200, products });
+  } catch (err) {
+    res.status(500).json({ status: 500, error: err.message });
+  }
+};
+
+export const DiscountProducts = async (req, res) => {
+  try {
+    const products = await Product.find({ compare_price: { $exists: true } }).sort({ createdAt: -1 });
     res.json({ status: 200, products });
   } catch (err) {
     res.status(500).json({ status: 500, error: err.message });

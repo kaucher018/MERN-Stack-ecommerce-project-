@@ -6,6 +6,11 @@ import { useContext } from "react";
 import { CartContext } from "../Cart/Cart";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Products from '../Products/Products'
+import TopProducts from '../TopProducts/TopProducts'
+import Banner from '../Banner/Banner'
+import Subscribe from '../Subscribe/Subscribe'
+import Footer from '../Footer/Footer'
 
 
 
@@ -81,10 +86,6 @@ export default function ProductDetail() {
 
 
       }
-
-
-   
-    
 
   }
 
@@ -189,6 +190,12 @@ export default function ProductDetail() {
           <p className="text-sm text-gray-500">SKU: {product.sku}</p>
         </div>
       </div>
+     <Subscribe/> 
+    <Banner/>
+    
+    <Footer/>
     </div>
+
+    
   );
 }

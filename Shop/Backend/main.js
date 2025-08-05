@@ -9,8 +9,8 @@ import productRoutes from './Routes/productRoutes.js';
 import displayRoutes from './Routes/displayRoute.js';
 import orderRoutes from './Routes/orderRoutes.js';
 import accountRoutes from './Routes/accountRoutes.js';
-
-
+import AdminorderRoute from './Routes/AdminorderRoute.js';
+import dashboardRoutes from './Routes/dashboardRoutes.js';
 
 
 import cors from 'cors'
@@ -40,6 +40,9 @@ app.use('/api', productRoutes);
 app.use('/api', displayRoutes);
 app.use('/api', orderRoutes);
 app.use('/api', accountRoutes);
+app.use('/api', AdminorderRoute);
+app.use('/api', dashboardRoutes);
+
 
 
 app.listen(port, () => {

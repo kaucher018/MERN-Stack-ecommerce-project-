@@ -41,7 +41,7 @@ const SignUp = () => {
             name : data.name
         }
         localStorage.setItem('userinfo', JSON.stringify(userinfo));
-        window.location.href = '/';
+        window.location.href = '/login';
      }
       
     })

@@ -18,10 +18,7 @@ const DashbordSidebar = () => {
           <li className="hover:text-blue-600 cursor-pointer" onClick={() => navigate("/categories")}>Categories</li>
           <li className="hover:text-blue-600 cursor-pointer"onClick={() => navigate("/brands")}>Brands</li>
           <li className="hover:text-blue-600 cursor-pointer"onClick={() => navigate("/products")}>Products</li>
-          <li className="hover:text-blue-600 cursor-pointer">Orders</li>
-          <li className="hover:text-blue-600 cursor-pointer">Users</li>
-          <li className="hover:text-blue-600 cursor-pointer">Shipping</li>
-          <li className="hover:text-blue-600 cursor-pointer">Change Password</li>
+          <li className="hover:text-blue-600 cursor-pointer" onClick={() => navigate("/Orders")}>Orders</li>
           <li>
             <button 
               onClick={logout} 
