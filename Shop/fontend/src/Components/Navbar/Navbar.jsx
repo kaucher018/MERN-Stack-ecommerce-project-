@@ -24,11 +24,7 @@ const Menu = [
     name: "Shop",
     link: "/Shop",
   },
-  {
-    id: 3,
-    name: "Top Rated",
-    link: "/NavTop",
-  },
+ 
   {
     id: 4,
     name: "Discount Product",
@@ -82,11 +78,11 @@ const Navbar = () => {
     <div className="shadow-md bg-white dark:bg-gray-900 duration-200 relative z-40">
       {/* upper Navbar */}
       <div className="bg-primary/40 py-2">
-        <div className="container flex justify-between items-center">
+        <div onClick={() => navigate("/")} className="container flex justify-between items-center">
           <div>
-            <a href="#" className="font-bold text-2xl sm:text-3xl flex gap-2 ml-5">
-              <img src={Logo} alt="Logo" className="w-20" />
-             <span className="text-white mt-4">StyleLoop</span> 
+            <a href="/" className="font-bold text-2xl sm:text-3xl flex gap-2 ml-5">
+              <img src={Logo} alt="Logo" className="w-20 ml-10 mt-4" />
+             <span className="text-white mt-4">Fiker</span> 
             </a>
           </div>
 

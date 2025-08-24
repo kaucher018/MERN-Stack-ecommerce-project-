@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import Loader from '../Common/Loader';
 import { toast } from 'react-toastify';
 import Navbar from '../Navbar/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function OrderConfirmation() {
@@ -13,6 +14,7 @@ export default function OrderConfirmation() {
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState([]);
   const params = useParams();
+  const navigate = useNavigate();
 
    const userId = JSON.parse(localStorage.getItem('userinfo')).id; // however you store it (from localStorage, context, etc.)
   const orderId = params.id;
@@ -134,7 +136,7 @@ setItems(result.data.order_items);
           <button className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded shadow">
             View Order Details
           </button>
-          <button className="px-6 py-2 border border-gray-300 hover:bg-gray-100 text-gray-800 font-medium rounded">
+          <button onClick={() => navigate("/")} className="px-6 py-2 border border-gray-300 hover:bg-gray-100 text-gray-800 font-medium rounded">
             Continue Shopping
           </button>
         </div>

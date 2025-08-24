@@ -89,4 +89,48 @@ export const getProduct = async (req, res) => {
     } catch (error) {
       res.status(500).json({ status: '500', message: 'Server Error', error });
     }
+    
   };
+
+
+
+// ✅ Get Products with Compare Price
+export const getProductsWithComparePrice = async (req, res) => {
+  try {
+    const query = { status: 1, compare_price: { $exists: true, $ne: null } };
+
+    if (req.query.category) {
+      query.category_id = { $in: req.query.category.split(",") };
+    }
+
+    if (req.query.brand) {
+      query.brand_id = { $in: req.query.brand.split(",") };
+    }
+
+    const data = await Product.find(query).sort({ createdAt: -1 });
+    res.json({ status: 200, data });
+  } catch (err) {
+    res.status(500).json({ status: 500, error: err.message });
+  }
+};
+
+// ✅ Get Featured Products
+export const getFeaturedProducts = async (req, res) => {
+  try {
+    const query = { status: 1, is_featured: true };
+
+    if (req.query.category) {
+      query.category_id = { $in: req.query.category.split(",") };
+    }
+
+    if (req.query.brand) {
+      query.brand_id = { $in: req.query.brand.split(",") };
+    }
+
+    const data = await Product.find(query).sort({ createdAt: -1 });
+    res.json({ status: 200, data });
+  } catch (err) {
+    res.status(500).json({ status: 500, error: err.message });
+  }
+};
+

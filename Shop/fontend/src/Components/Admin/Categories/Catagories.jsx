@@ -74,6 +74,7 @@ const deleteCategory = async(id) => {
 <>
     <Navbar/>
     <div className="min-h-screen flex bg-gray-100">
+      
       {/* Sidebar */}
      <DashbordSidebar/>
       {/* Main Content */}

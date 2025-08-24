@@ -66,7 +66,7 @@ export default function ProductDetail() {
   const handleaddtocart = () => {
     const user = localStorage.getItem("userinfo","Admininfo");
     if( user == null)      
-      { navigate("/Userlogin");
+      { navigate("/login");
         toast.error("Please login first")
 
       }else{
@@ -76,7 +76,7 @@ export default function ProductDetail() {
         toast.error("Please select a size");
       }else{
         addtocart(product, selectedSize); 
-        toast.success(" Sucksexfully Product added to cart");
+        toast.success(" Successfully Product added to cart");
         // console.log(selectedSize);
         // console.log(size);
     }
@@ -153,8 +153,8 @@ export default function ProductDetail() {
           </div>
 
           <div className="flex items-center gap-2 text-lg">
-            <span className="font-bold text-gray-900">${product.price}</span>
-            <span className="line-through text-gray-400">${product.compare_price}</span>
+            <span className="font-bold text-gray-900"> ৳{product.price}</span>
+            <span className="line-through text-gray-400"> ৳{product.compare_price}</span>
           </div>
 
           <ul className="text-sm text-gray-700 list-disc pl-5">

@@ -198,7 +198,7 @@ navigate(`/OrderConfirmation/${result.id}`);
                       </p>
                     </div>
                   </div>
-                  <span className="font-semibold">${item.price}</span>
+                  <span className="font-semibold"> ৳{item.price}</span>
                 </div>
               ))}
 
@@ -206,16 +206,16 @@ navigate(`/OrderConfirmation/${result.id}`);
               <div className="text-right mt-4 space-y-1 text-sm">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>${subtotal}</span>
+                  <span> ৳{subtotal}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Shipping</span>
-                  <span>$0</span>
+                  <span> ৳0</span>
                 </div>
                 <div className="flex justify-between font-bold text-base">
                   <span>Grand Total</span>
                   <span>
-                    $
+                     ৳
                     {grandtotal}
                   </span>
                 </div>
@@ -231,8 +231,8 @@ navigate(`/OrderConfirmation/${result.id}`);
                       type="radio"
                       name="payment"
                       value="Stripe"
-                      checked={payment === "Stripe"}
-                      onChange={() => setPayment("Stripe")}
+                      checked={payment === "COD"}
+                      onChange={() => setPayment("COD")}
                       className="accent-teal-500"
                     />
                     <span className="ml-2">Stripe</span>
